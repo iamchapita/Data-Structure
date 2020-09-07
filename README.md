@@ -4,19 +4,19 @@ Simple Data Structures with Node.
 
 **Data Structure included:**
 
--Queue
+  - Queue
 
 
--Stack
+  - Stack
 
 
--Simple LinkedList
+  - Simple LinkedList
 
 
--Double LinkedList
+  - Double LinkedList
 
 
--N-ary Tree
+  - N-ary Tree
 
 
 
