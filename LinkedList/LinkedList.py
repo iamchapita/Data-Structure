@@ -14,7 +14,7 @@ class LinkedList:
     
     def push(self, value, position = 0):
         
-        if(not isinstance(position,int) or position<0):
+        if(not isinstance(position,int) or position<0 or position> self.length()):
             return False
 
         if(not self.first):
@@ -113,6 +113,7 @@ class LinkedList:
     
 
 ll = LinkedList()
+
 ll.push(0,0)
 ll.push(1,1)
 ll.push(2,2)
@@ -121,7 +122,7 @@ ll.push(4,4)
 ll.push(5,5)
 ll.push(6,6)
 ll.push(7,7)
+ll.push(110,8)
+ll.push(66,6)
 
-
-ll.push(10,6)
 ll.print()

@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 
-
 class Node:
-    #constructor
+    
+    #constructor 
     def __init__(self,value): #en todas las funciones el primer parametro tiene que ser un self
         self.value = value #self -> this
         self.next = None

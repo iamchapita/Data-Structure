@@ -1,12 +1,16 @@
 # -*- coding=utf-8 -*-
 
-from Node import *
+class Node:
+    
+    #constructor 
+    def __init__(self,value): #en todas las funciones el primer parametro tiene que ser un self
+        self.value = value #self -> this
+        self.next = None
 
 class Stack:
 
     def __init__(self):
         self.first = None
-
 
     def push(self, value):
         
@@ -19,6 +23,7 @@ class Stack:
         current = self.first
 
         while(current.next):
+
             current = current.next
 
         current.next = Node(value)
@@ -33,22 +38,25 @@ class Stack:
         current = self.first.next
 
         while(current.next):
+
             current = current.next
             before = before.next
         
         before.next = None
-
         return True
+
     def print(self):
 
         current = self.first
         empty = ""
 
         while(current):
+
             empty += "%s=>" %(current.value)
             current = current.next
         
         empty += "Null"
+        print(empty)
         return empty
             
     def lenght(self):
@@ -57,8 +65,10 @@ class Stack:
         count = 0
 
         while(current):
+
             count += 1
             current = current.next
+
         return count
 
 s = Stack()
@@ -66,5 +76,7 @@ s.push(0)
 s.push(1)
 s.push(2)
 s.push(3)
+
+s.print()
 
 
