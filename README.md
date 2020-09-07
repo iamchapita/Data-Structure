@@ -1,6 +1,6 @@
 # Data-Structures
 
-Simple Data Structures in Python with Node.
+Simple Data Structures with Node.
 
 **Data Structure included:**
 
