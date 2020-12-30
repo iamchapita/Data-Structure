@@ -51,9 +51,10 @@ class Double_LinkedList:
 
     def print(self, order = "up"):
 
+        current = self.first
+        string = ""
+
         if(order == "up"):
-            current = self.first
-            string = ""
 
             while(current):
 
@@ -64,17 +65,14 @@ class Double_LinkedList:
             print(string)
 
         elif(order == "down"):
-
-            current = self.first
-            string = ""
-
+    
             while(current):
 
                 if(current.next == None):
                     break
 
                 current = current.next
-
+        
             while (current):
 
                 string += (("%s <=> ")%(current.value))
@@ -95,14 +93,21 @@ class Double_LinkedList:
         
         count = 1
         before = self.first
+        #print("before", before.value)
         current = self.first.next
+        #print("current", current.value)
 
+        #print("Entrando al while")
         while (current):
 
             if(count == position):
                 
+                #print("before.next", before.next.value)
                 before.next = before.next.next
+                #print("before.next", before.next.value)
+                #print("before.next.prev", before.next.prev.value)
                 before.next.prev = current.prev
+                #print("before.next.prev", current.prev.value)
                 return True
             
             count += 1
@@ -150,10 +155,10 @@ d_ll.push(7,6)
 d_ll.push(8,7)
 d_ll.push(9,8)
 
-d_ll.delete(4)
-
 d_ll.print("up")
 d_ll.print("down")
 
+#d_ll.delete(4)
 
+#d_ll.print("up")
 
