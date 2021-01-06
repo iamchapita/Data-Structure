@@ -87,5 +87,6 @@ ll.print()
 print(ll.search(0))
 print(ll.length())
 
-
-
+print("El primer valor(nodo) de la lista enlazada circular es: ", ll.first.value)
+print("El último valor(nodo) de la lista enlazada circular es: ", ll.last.value)
+print("El valor(nodo) que está despues del último valor(nodo) es: ", ll.last.next.value)
