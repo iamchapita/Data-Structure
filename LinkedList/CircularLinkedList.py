@@ -7,7 +7,7 @@ class Node:
         self.value = value 
         self.next = None
 
-class LinkedList:
+class CircularLinkedList:
 
     def __init__(self):
         self.first = None
@@ -71,7 +71,7 @@ class LinkedList:
         return count
     
 
-ll = LinkedList()
+ll = CircularLinkedList()
 
 ll.push(0)
 ll.push(1)
