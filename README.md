@@ -16,7 +16,7 @@ Simple Data Structures with Node.
   - Double LinkedList
 
 
-  -Circular LinkedList
+  - Circular LinkedList
 
 
   - N-ary Tree
