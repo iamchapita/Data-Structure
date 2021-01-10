@@ -4,13 +4,13 @@ Simple Data Structures with Node.
 
 **Data Structure included:**
 
-  - Queue
+  1 Queue
 
 
-  - Stack
+  2 Stack
 
 
-  - Simple LinkedList
+  3 LinkedList
 
 
   - Double LinkedList
@@ -19,7 +19,9 @@ Simple Data Structures with Node.
   - Circular LinkedList
 
 
-  - N-ary Tree
+  4 Tree 
+  
+  - N-Ary Tree (with node and linkedlist as children's container)
 
 
 
