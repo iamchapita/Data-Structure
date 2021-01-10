@@ -17,11 +17,13 @@ class Double_LinkedList:
 
         if(not isinstance(position, int) or position < 0 or position > self.length()):
             return False
-
+        
+        #Caso base: si no hay ningun elemento (nodo) en la lista
         if(not self.first):
             self.first = Node(value)
             return True
         
+        #Caso 1: agregando un elemento (nodo) en la primer posición
         if(position == 0):
             current = self.first
             self.first = Node(value)
@@ -33,6 +35,7 @@ class Double_LinkedList:
         current = self.first.next
         count = 1
         
+        #Caso 2: agregando un elemento (nodo) en cualquier posición que no sea la primera
         while (before):
             
             if(count == position):
@@ -54,6 +57,7 @@ class Double_LinkedList:
         current = self.first
         string = ""
 
+        #Imprimir en orden ascendente
         if(order == "up"):
 
             while(current):
@@ -63,7 +67,8 @@ class Double_LinkedList:
             
             string += "null"
             print(string)
-
+        
+        #Imprimir en orden descendente
         elif(order == "down"):
     
             while(current):
@@ -93,21 +98,14 @@ class Double_LinkedList:
         
         count = 1
         before = self.first
-        #print("before", before.value)
         current = self.first.next
-        #print("current", current.value)
-
-        #print("Entrando al while")
+        
         while (current):
 
             if(count == position):
-                
-                #print("before.next", before.next.value)
+
                 before.next = before.next.next
-                #print("before.next", before.next.value)
-                #print("before.next.prev", before.next.prev.value)
                 before.next.prev = current.prev
-                #print("before.next.prev", current.prev.value)
                 return True
             
             count += 1
@@ -158,7 +156,6 @@ d_ll.push(9,8)
 d_ll.print("up")
 d_ll.print("down")
 
-#d_ll.delete(4)
-
-#d_ll.print("up")
+d_ll.delete(4)
+d_ll.print("up")
 
