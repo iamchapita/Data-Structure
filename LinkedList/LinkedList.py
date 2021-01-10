@@ -14,17 +14,19 @@ class LinkedList:
     
     def push(self, value, position = 0):
         
+        #Comprobando que position sea un entero
         if(not isinstance(position,int) or position<0 or position> self.length()):
             return False
 
+        #Caso base: Si la lista enlazada está vacía
         if(not self.first):
             self.first = Node(value)
             return True
         
         count = 0
-
         current = self.first
 
+        #Caso 1: inserción de un elemento en la primera posición
         if(count == position):
         
             self.first = Node(value)
@@ -33,7 +35,8 @@ class LinkedList:
         
         before = self.first
         current = self.first.next
-    
+
+        #Caso 2: inserción de un elemento en cualquier posición que no sea la primera
         while(before):
 
             count += 1
