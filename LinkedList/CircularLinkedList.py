@@ -71,22 +71,22 @@ class CircularLinkedList:
         return count
     
 
-ll = CircularLinkedList()
+cll = CircularLinkedList()
 
-ll.push(0)
-ll.push(1)
-ll.push(2)
-ll.push(3)
-ll.push(4)
-ll.push(5)
-ll.push(6)
-ll.push(7)
-ll.push(110)
+cll.push(0)
+cll.push(1)
+cll.push(2)
+cll.push(3)
+cll.push(4)
+cll.push(5)
+cll.push(6)
+cll.push(7)
+cll.push(110)
 
-ll.print()
-print(ll.search(0))
-print(ll.length())
+cll.print()
+print(cll.search(0))
+print(cll.length())
 
-print("El primer valor(nodo) de la lista enlazada circular es: ", ll.first.value)
-print("El último valor(nodo) de la lista enlazada circular es: ", ll.last.value)
-print("El valor(nodo) que está despues del último valor(nodo) es: ", ll.last.next.value)
+print("El primer valor(nodo) de la lista enlazada circular es: ", cll.first.value)
+print("El último valor(nodo) de la lista enlazada circular es: ", cll.last.value)
+print("El valor(nodo) que está despues del último valor(nodo) es: ", cll.last.next.value)
