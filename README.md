@@ -22,6 +22,7 @@ Simple Data Structures with Node.
   4 Tree 
   
   - N-Ary Tree (with node and linkedlist as children's container)
+  - BST (Binary Searcg Tree)
 
 
 
