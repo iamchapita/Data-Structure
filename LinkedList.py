@@ -115,16 +115,16 @@ class LinkedList:
         return count
     
 
-ll = LinkedList()
-ll.push(0,0)
-ll.push(1,1)
-ll.push(2,2)
-ll.push(3,3)
-ll.push(4,4)
-ll.push(5,5)
-ll.push(6,6)
-ll.push(7,7)
-ll.push(110,8)
-ll.push(66,6)
+#ll = LinkedList()
+#ll.push(0,0)
+#ll.push(1,1)
+#ll.push(2,2)
+#ll.push(3,3)
+#ll.push(4,4)
+#ll.push(5,5)
+#ll.push(6,6)
+#ll.push(7,7)
+#ll.push(110,8)
+#ll.push(66,6)
 
 #ll.print()
