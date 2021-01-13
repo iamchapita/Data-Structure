@@ -86,7 +86,7 @@ class BST:
                 
                 return self.searchInner(value, current.right)
     
-    def print(self):
+    def print2D(self):
         current = self.root
         self.printInner(current, 0)
 
@@ -107,6 +107,96 @@ class BST:
   
         self.printInner(current.left, space)  
         
+    def print(self):
+        
+        current = self.root
+        maxLevel = self.maxLevel(current)
+        current = []
+        current.append(self.root)
+        self.printNode(current, 1, maxLevel)
+
+    def printNode(self, nodes, level, maxLevel):
+
+        if(len(nodes) == 0 or self.isAllElementsNull(nodes)): 
+            return
+
+        floor = maxLevel - level
+        endgeLines = pow(2, (max(floor - 1, 0)))
+        firstSpaces = pow(2, (floor)) - 1
+        betweenSpaces = pow(2, (floor + 1)) - 1
+
+        self.printWhiteSpaces(firstSpaces)
+
+        newNodes = []
+
+        for node in nodes:
+
+            if(node):
+
+                print(node.value, end="", sep="")
+                newNodes.append(node.left)
+                newNodes.append(node.right)
+
+            else:
+
+                newNodes.append(None)
+                newNodes.append(None)
+                print(" ", end="", sep="")
+            
+            self.printWhiteSpaces(betweenSpaces)
+        
+        print("")
+
+        for i in range(1, endgeLines + 1):
+
+            for j in range(0, len(nodes)):
+
+                self.printWhiteSpaces(firstSpaces - i)
+
+                if(nodes[j] == None):
+
+                    self.printWhiteSpaces(endgeLines + endgeLines + i + 1)
+                    continue
+                
+                if(nodes[j].left):
+                    print("/", end="", sep="")
+                
+                else:
+                    self.printWhiteSpaces(1)
+                
+                self.printWhiteSpaces(i + i - 1)
+
+                if(nodes[j].right):
+                    print("\\", end="", sep="")
+                
+                else:
+                    self.printWhiteSpaces(1)
+                
+                self.printWhiteSpaces(endgeLines + endgeLines - i)
+
+            print("")
+        
+        self.printNode(newNodes, level + 1, maxLevel)
+
+    def printWhiteSpaces(self, count):
+        
+        for i in range(0, count):
+            print(" ", end="", sep="")
+
+    def maxLevel(self, current):
+
+        if(not current):
+            return 0;
+        
+        return max(self.maxLevel(current.left), self.maxLevel(current.right)) +1
+    
+    def isAllElementsNull(self, array):
+
+        for element in array:
+            if(element):
+                return False
+        
+        return True
 
 bst = BST()
 
@@ -151,9 +241,9 @@ ll.push(1,15)
 
 bst1 = BST()
 
-#bst1.convert(ll)
+bst1.convert(ll)
 
-#bst1.print()
+#bst1.print2D()
 
 
 
