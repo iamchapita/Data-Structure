@@ -4,8 +4,8 @@
 # @version: 0.1.0
 # @date: 2021/05/06
 
-from List.LinkedList import LinkedList
-
+from LinkedList import LinkedList
+from Node import Node
 class BST:
 
     def __init__(self):
