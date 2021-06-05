@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-class Node:
-    
-    def __init__(self, value):
-        
-        self.value = value 
-        self.next = None
+# @author: iamchapita
+# @version: 0.1.0
+# @date: 2021/05/06
+
+from Node import Node
 
 class CircularLinkedList:
 
@@ -110,24 +109,24 @@ class CircularLinkedList:
             return count
 
 
-cll = CircularLinkedList()
+Cll = CircularLinkedList()
 
-cll.push(0)
-cll.push(1,1)
-cll.push(2,2)
-cll.push(3,3)
-cll.push(4,4)
-cll.push(5,5)
-cll.push(6,6)
-cll.push(7,7)
-cll.push(-1)
-cll.push(-2,0)
+Cll.push(0)
+Cll.push(1,1)
+Cll.push(2,2)
+Cll.push(3,3)
+Cll.push(4,4)
+Cll.push(5,5)
+Cll.push(6,6)
+Cll.push(7,7)
+Cll.push(-1)
+Cll.push(-2,0)
 
-cll.print()
+Cll.print()
 
-print("El valor se encuentra en la lista:", cll.search(0))
-print("La longitud de la lista circular enlazada es:" , cll.length())
+print("El valor se encuentra en la lista:", Cll.search(0))
+print("La longitud de la lista circular enlazada es:" , Cll.length())
 
-print("El primer valor(nodo) de la lista enlazada circular es: ", cll.first.value)
-print("El último valor(nodo) de la lista enlazada circular es: ", cll.last.value)
-print("El valor(nodo) que está despues del último valor(nodo) es: ", cll.last.next.value)
+print("El primer valor(nodo) de la lista enlazada circular es: ", Cll.first.value)
+print("El último valor(nodo) de la lista enlazada circular es: ", Cll.last.value)
+print("El valor(nodo) que está despues del último valor(nodo) es: ", Cll.last.next.value)

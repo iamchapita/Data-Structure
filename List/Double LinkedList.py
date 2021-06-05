@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-class Node:
-    
-    def __init__(self, value):
-        
-        self.value = value 
-        self.next = None
-        self.prev = None
+# @author: iamchapita
+# @version: 0.1.0
+# @date: 2021/05/06
+
+from Node import Node
 
 class Double_LinkedList:
 
@@ -142,20 +140,20 @@ class Double_LinkedList:
         return count
 
     
-d_ll = Double_LinkedList()
-d_ll.push(1,0)
-d_ll.push(2,1)
-d_ll.push(3,2)
-d_ll.push(4,3)
-d_ll.push(5,4)
-d_ll.push(6,5)
-d_ll.push(7,6)
-d_ll.push(8,7)
-d_ll.push(9,8)
+Dll = Double_LinkedList()
+Dll.push(1,0)
+Dll.push(2,1)
+Dll.push(3,2)
+Dll.push(4,3)
+Dll.push(5,4)
+Dll.push(6,5)
+Dll.push(7,6)
+Dll.push(8,7)
+Dll.push(9,8)
 
-d_ll.print("up")
-d_ll.print("down")
+Dll.print("up")
+Dll.print("down")
 
-d_ll.delete(4)
-d_ll.print("up")
+Dll.delete(4)
+Dll.print("up")
 
