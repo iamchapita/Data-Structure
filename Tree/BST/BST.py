@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*- 
-from LinkedList import LinkedList
+# -*- coding: utf-8 -*-
 
-class Node:
+# @author: iamchapita
+# @version: 0.1.0
+# @date: 2021/05/06
 
-    def __init__(self, value):
-
-        self.value =  value
-        self.left = None
-        self.right = None
+from List.LinkedList import LinkedList
 
 class BST:
 
