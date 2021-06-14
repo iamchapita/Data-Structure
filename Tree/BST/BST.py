@@ -6,95 +6,127 @@
 
 from LinkedList import LinkedList
 from Node import Node
+
 class BST:
 
     def __init__(self):
         self.root =  None
 
-    def add(self, value):
+    def add(self, value) -> None:
         current = self.root
-        self.addInner(value, current)
+        self.__add(value, current)
+    
+    # Se utiliza "__" al principio para definir el método como privado
+    def __add(self, value, current: Node) -> bool:
 
-    def addInner(self, value, current):
+        # Si el valor que se intenta ingresar, ya está en el árbol
+        """ if self.search(value):
+            return None """
 
+        # Si no hay raíz
         if(current == None):
             self.root = Node(value)
             return True
 
+        # Si la raíz es del tipo Nodo
         if(isinstance(current, Node)):
-
-            if(current.value > value):
-
-                if(not current.left):
-
-                    current.left = Node(value)
-                    return True
-
-                else: return self.addInner(value, current.left)
-
-            else:
-
+            
+            # Si el valor que se intenta ingresar(value) es mayor al valor del nodo(current.value)
+            if value > current.value:
+                
+                # Si no existe nodo a la derecha del nodo comprobado(current.value) 
                 if(not current.right):
-
+                    
+                    # Se inserta un nodo y se establece con el valor que se intenta ingresar
                     current.right = Node(value)
                     return True
                 
-                else: return self.addInner(value, current.right)
+                # Si hay nodo a la derecha del nodo comprobado
+                else: return self.__add(value, current.right)
 
-    def convert(self, linkedlist):
+            # Si el valor que se intenta ingresar(value) es menor al valor del nodo(current.value)
+            else:
+                
+                # Si no hay nodo a la izquierda del nodo comprobado
+                if(not current.left):
 
+                    # Se inserta un nodo y se establece con el valor que se intenta ingresar
+                    current.left = Node(value)
+                    return True
+
+                # Si hay nodo a la izquierda del nodo comprobado
+                else: return self.__add(value, current.left)
+    
+    # Se convierte una lista enlazada a un árbol binario de búsqueda (BST)
+    # Se debe ejecutar en un instancia de árbol vacía
+    def convert(self, linkedlist: LinkedList) -> bool:
+        
+        # Se comprueba que linkedlist sea el tipo LinkedList
         if(not isinstance(linkedlist, LinkedList)): return False
         
+        # Se establece el current
         current = linkedlist.first
-        
-        while (current):
-            
-            value = current.value
-            self.add(value)
+
+        # Se recorre la lista enlazada
+        while (current):    
+
+            # Se agrega el valor al árbol
+            self.add(current.value)
             current = current.next
         
         return True
 
-    def search(self, value):
+    def search(self, value) -> Node:
+        # Se instancia la raíz del árbol
         current = self.root
-        self.searchInner(value, current)
-
-    def searchInner(self, value, current):
-
+        # Si no hay raíz
         if(not current): 
             return False
-
-        if(current.value == value): 
+        # Si el valor de la raíz es el valor buscado
+        if(current.value == value):
             print(current.value)
-
+        # Se llama el método que buscara en los hijos de la raíz, y en los hijos de los hijos
         else:
+            # Se llama con return puesto que la función se utiliza múltiples veces(recursivo)
+            # Retorna el valor al llamado de instanciabst.search(valor)
+            return self.__search(value, current)
 
-            if(current.value > value): 
+    def __search(self, value, current) -> Node:
+        
+        if(current.value == value):
+            # Retorna el *nodo* al llamado de __search
+            return current
 
-                if(not current.left): 
-                    return False
-                
-                return self.searchInner(value, current.left)
+        elif value > current.value and current.right is not None:
+            return self.__search(value, current.right)
 
-            else:
-
-                if(not current.right): 
-                    return False
-                
-                return self.searchInner(value, current.right)
+        elif value < current.value and current.left is not None:
+            return self.__search(value, current.left)
     
-    def print2D(self):
-        current = self.root
-        self.printInner(current, 0)
+    def deleteNode(self, value) -> Node:
+        # Se borra el nodo retornado por el método de búsqueda
+        return self.__deleteNode(self.search(value))
+    
+    def __deleteNode(self, node:Node):
 
-    def printInner(self, current, space) : 
+        if not node:
+            print("Nodo no encontrado")
+            return None
+
+        # Incompleto, necesito estudiar para hacerlo JAJA
+        
+    def print(self):
+        current = self.root
+        self.__print(current)
+
+    def __print(self, current, space = 0) : 
 
         if (current == None): 
             return False
         
         space += 7
 
-        self.printInner(current.right, space)  
+        self.__print(current.right, space)  
         print()  
         
         for i in range(space): 
@@ -102,98 +134,7 @@ class BST:
 
         print(current.value)  
   
-        self.printInner(current.left, space)  
-        
-    def print(self):
-        
-        current = self.root
-        maxLevel = self.maxLevel(current)
-        current = []
-        current.append(self.root)
-        self.printNode(current, 1, maxLevel)
-
-    def printNode(self, nodes, level, maxLevel):
-
-        if(len(nodes) == 0 or self.isAllElementsNull(nodes)): 
-            return
-
-        floor = maxLevel - level
-        endgeLines = pow(2, (max(floor - 1, 0)))
-        firstSpaces = pow(2, (floor)) - 1
-        betweenSpaces = pow(2, (floor + 1)) - 1
-
-        self.printWhiteSpaces(firstSpaces)
-
-        newNodes = []
-
-        for node in nodes:
-
-            if(node):
-
-                print(node.value, end="", sep="")
-                newNodes.append(node.left)
-                newNodes.append(node.right)
-
-            else:
-
-                newNodes.append(None)
-                newNodes.append(None)
-                print(" ", end="", sep="")
-            
-            self.printWhiteSpaces(betweenSpaces)
-        
-        print("")
-
-        for i in range(1, endgeLines + 1):
-
-            for j in range(0, len(nodes)):
-
-                self.printWhiteSpaces(firstSpaces - i)
-
-                if(nodes[j] == None):
-
-                    self.printWhiteSpaces(endgeLines + endgeLines + i + 1)
-                    continue
-                
-                if(nodes[j].left):
-                    print("/", end="", sep="")
-                
-                else:
-                    self.printWhiteSpaces(1)
-                
-                self.printWhiteSpaces(i + i - 1)
-
-                if(nodes[j].right):
-                    print("\\", end="", sep="")
-                
-                else:
-                    self.printWhiteSpaces(1)
-                
-                self.printWhiteSpaces(endgeLines + endgeLines - i)
-
-            print("")
-        
-        self.printNode(newNodes, level + 1, maxLevel)
-
-    def printWhiteSpaces(self, count):
-        
-        for i in range(0, count):
-            print(" ", end="", sep="")
-
-    def maxLevel(self, current):
-
-        if(not current):
-            return 0;
-        
-        return max(self.maxLevel(current.left), self.maxLevel(current.right)) +1
-    
-    def isAllElementsNull(self, array):
-
-        for element in array:
-            if(element):
-                return False
-        
-        return True
+        self.__print(current.left, space)  
 
 bst = BST()
 
@@ -210,10 +151,12 @@ bst.add(4)
 bst.add(7)
 bst.add(5)
 
-#bst.search(-7)
+# Se imprime dirección de memoria del nodo encontrado
+#print(bst.search(-7))
+# Imprime el valor del  nodos encontrado
+#print(bst.search(-7).value)
 
-#bst.print()
-
+bst.print()
 
 #======================================================================================#
 
@@ -240,7 +183,7 @@ bst1 = BST()
 
 bst1.convert(ll)
 
-#bst1.print2D()
+#bst1.print()
 
 
 
