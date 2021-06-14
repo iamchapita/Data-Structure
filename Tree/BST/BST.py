@@ -103,19 +103,23 @@ class BST:
         elif value < current.value and current.left is not None:
             return self.__search(value, current.left)
 
+    # Encuentra la altura del árbol
+    # Encuentra la rama mas larga o alta del árbol y devuelve el número de niveles
     def height(self):
+        # Comprobando si hay raíz 
         current = self.root
-
-        if current :
+        if current:
             return self.__height(current)
 
     def __height(self, node, heigh=0):
+        # Si no hay nodo
         if not node:
             return heigh
-
+        # Calculando la altura por el lado izquierdo de todos los nodos
         leftHeigh = self.__height(node.left, heigh+1)
+        # Calculando la altura por el lado derecho de todos los nodos
         rightHeigh = self.__height(node.right, heigh+1)
-
+        # retorna el valor mas alto de ambas variables
         return max(leftHeigh, rightHeigh)
 
     def deleteNode(self, value) -> Node:
