@@ -102,7 +102,22 @@ class BST:
 
         elif value < current.value and current.left is not None:
             return self.__search(value, current.left)
-    
+
+    def height(self):
+        current = self.root
+
+        if current :
+            return self.__height(current)
+
+    def __height(self, node, heigh=0):
+        if not node:
+            return heigh
+
+        leftHeigh = self.__height(node.left, heigh+1)
+        rightHeigh = self.__height(node.right, heigh+1)
+
+        return max(leftHeigh, rightHeigh)
+
     def deleteNode(self, value) -> Node:
         # Se borra el nodo retornado por el método de búsqueda
         return self.__deleteNode(self.search(value))
@@ -156,7 +171,8 @@ bst.add(5)
 # Imprime el valor del  nodos encontrado
 #print(bst.search(-7).value)
 
-bst.print()
+#bst.print()
+#print(bst.height())
 
 #======================================================================================#
 
