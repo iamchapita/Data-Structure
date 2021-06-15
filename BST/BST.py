@@ -39,23 +39,28 @@ class BST:
                     
                     # Se inserta un nodo y se establece con el valor que se intenta ingresar
                     current.right = Node(value)
+                    current.right.parent = current
                     return True
                 
                 # Si hay nodo a la derecha del nodo comprobado
                 else: return self.__add(value, current.right)
 
             # Si el valor que se intenta ingresar(value) es menor al valor del nodo(current.value)
-            else:
+            elif value < current.value:
                 
                 # Si no hay nodo a la izquierda del nodo comprobado
                 if(not current.left):
 
                     # Se inserta un nodo y se establece con el valor que se intenta ingresar
                     current.left = Node(value)
+                    current.left.parent = current
                     return True
 
                 # Si hay nodo a la izquierda del nodo comprobado
                 else: return self.__add(value, current.left)
+
+            else: 
+                print("El valo ya existe en el Árbol")
     
     # Se convierte una lista enlazada a un árbol binario de búsqueda (BST)
     # Se debe ejecutar en un instancia de árbol vacía
@@ -84,7 +89,7 @@ class BST:
             return False
         # Si el valor de la raíz es el valor buscado
         if(current.value == value):
-            print(current.value)
+            return current
         # Se llama el método que buscara en los hijos de la raíz, y en los hijos de los hijos
         else:
             # Se llama con return puesto que la función se utiliza múltiples veces(recursivo)
@@ -127,13 +132,68 @@ class BST:
         return self.__deleteNode(self.search(value))
     
     def __deleteNode(self, node:Node):
-
+        
         if not node:
             print("Nodo no encontrado")
             return None
 
-        # Incompleto, necesito estudiar para hacerlo JAJA
-        
+        # División por casos:
+        # 1. El nodo no tiene hijos
+        # 2. El nodo tiene un hijo
+        # 3. El nodo tiene dos hijos
+
+        # Obtenemos el padre del nodo
+        parent = node.parent
+
+        # CASO 1: Si el nodo no tiene hijos
+        if self.numChildren(node) == 0:
+            
+            if parent:
+
+                if parent.left == node:
+                    parent.left = None
+                
+                else:
+                    parent.right = None
+                
+            else:
+                self.root = None
+
+        # CASO 2: El nodo tiene un hijo
+        if self.numChildren(node) == 1:
+            
+            # Obteniendo el hijo del lado izquierdo (si existe)
+            if node.left:
+                child = node.left
+
+            # Obteniendo el hijo del lado derecho (si existe)
+            else:
+                child = node.right
+
+            # Si existe un padre
+            if parent:
+                
+                # Si el padre contiene el nodo a eliminar en el lado izquierdo
+                if parent.left == node:
+                    parent.left = child
+
+                # Si el padre contiene el nodo a eliminar en el lado derecho
+                else:
+                    parent.right = child
+
+            # No existe un padre
+            else:
+                self.root=child
+            
+            child.parent = parent
+
+        # CASO 3: El nodo tiene dos hijos
+        if self.numChildren(node) == 2:
+
+            successor = self.minValue(node.right)
+            node.value = successor.value
+            self.__deleteNode(successor)
+
     def print(self):
         current = self.root
         self.__print(current)
@@ -155,6 +215,19 @@ class BST:
   
         self.__print(current.left, space)  
 
+    def minValue(self, current):
+        while current.left:
+            current = current.left
+        return current
+    
+    def numChildren(self, current):
+        count = 0
+        if current.left:
+            count += 1
+        if current.right:
+            count += 1
+        return count
+
 bst = BST()
 
 bst.add(1)
@@ -174,38 +247,14 @@ bst.add(5)
 #print(bst.search(-7))
 # Imprime el valor del  nodos encontrado
 #print(bst.search(-7).value)
-
-#bst.print()
 #print(bst.height())
-
-#======================================================================================#
-
-ll = LinkedList()
-ll.push(10,0)
-ll.push(15,1)
-ll.push(29,2)
-ll.push(33,3)
-ll.push(49,4)
-ll.push(46,5)
-ll.push(60,6)
-ll.push(38,7)
-ll.push(110,8)
-ll.push(66,6)
-ll.push(9,9)
-ll.push(5,10)
-ll.push(3,11)
-ll.push(4,12)
-ll.push(7,13)
-ll.push(11,14)
-ll.push(1,15)
-
-bst1 = BST()
-
-bst1.convert(ll)
-
-#bst1.print()
+#print(bst.minValue()
 
 
+# print(bst.search(1).value)
+# print(bst.search(-7).value)
 
-
-
+bst.print()
+bst.deleteNode(-7)
+print("===================================================")
+bst.print()
