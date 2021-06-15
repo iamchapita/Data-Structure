@@ -127,6 +127,7 @@ class BST:
         # retorna el valor mas alto de ambas variables
         return max(leftHeigh, rightHeigh)
 
+    # Borra un nodo del árbol
     def deleteNode(self, value) -> Node:
         # Se borra el nodo retornado por el método de búsqueda
         return self.__deleteNode(self.search(value))
@@ -215,11 +216,13 @@ class BST:
   
         self.__print(current.left, space)  
 
+    # Obtiene el valor más pequeño de un nodo
     def minValue(self, current):
         while current.left:
             current = current.left
         return current
     
+    # Obtiene el número de hijos del nodo
     def numChildren(self, current):
         count = 0
         if current.left:
@@ -244,17 +247,13 @@ bst.add(7)
 bst.add(5)
 
 # Se imprime dirección de memoria del nodo encontrado
-#print(bst.search(-7))
+# print(bst.search(-7))
 # Imprime el valor del  nodos encontrado
-#print(bst.search(-7).value)
-#print(bst.height())
-#print(bst.minValue()
-
-
-# print(bst.search(1).value)
 # print(bst.search(-7).value)
 
 bst.print()
+bst.deleteNode(1)
 bst.deleteNode(-7)
-print("===================================================")
+bst.deleteNode(12)
+print("=======================================================================================")
 bst.print()
